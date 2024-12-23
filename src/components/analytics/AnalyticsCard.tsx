@@ -1,0 +1,40 @@
+import React from 'react';
+import { LucideIcon } from 'lucide-react';
+
+interface AnalyticsCardProps {
+  title: string;
+  value: string | number;
+  change: number;
+  Icon: LucideIcon;
+  color: string;
+}
+
+const AnalyticsCard: React.FC<AnalyticsCardProps> = ({
+  title,
+  value,
+  change,
+  Icon,
+  color,
+}) => {
+  return (
+    <div className="bg-white rounded-lg shadow-md p-6">
+      <div className="flex items-center justify-between">
+        <div>
+          <p className="text-sm text-gray-600">{title}</p>
+          <h3 className="text-2xl font-bold mt-1">{value}</h3>
+        </div>
+        <div className={`p-3 rounded-full ${color}`}>
+          <Icon size={24} className="text-white" />
+        </div>
+      </div>
+      <div className="mt-4">
+        <span className={`text-sm ${change >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+          {change >= 0 ? '+' : ''}{change}%
+        </span>
+        <span className="text-sm text-gray-500 ml-1">vs last month</span>
+      </div>
+    </div>
+  );
+};
+
+export default AnalyticsCard;
