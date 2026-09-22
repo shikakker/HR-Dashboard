@@ -1,5 +1,3 @@
-import { ChartData, DepartmentData } from '../types/analytics';
-
 export const DEPARTMENT_COLORS = {
   Engineering: '#3b82f6',
   Product: '#10b981',
