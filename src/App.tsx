@@ -7,15 +7,23 @@ import AnalyticsDashboard from './components/analytics/AnalyticsDashboard';
 import SettingsPanel from './components/settings/SettingsPanel';
 import Modal from './components/common/Modal';
 import AddEmployeeForm from './components/forms/AddEmployeeForm';
+import { employees as seedEmployees } from './data/mockData';
+import { Employee } from './types';
 
 function App() {
   const [activeTab, setActiveTab] = useState('employees');
+  const [employees, setEmployees] = useState<Employee[]>(seedEmployees);
   const [isAddEmployeeModalOpen, setIsAddEmployeeModalOpen] = useState(false);
 
   const renderContent = () => {
     switch (activeTab) {
       case 'employees':
-        return <EmployeeList onAddEmployee={() => setIsAddEmployeeModalOpen(true)} />;
+        return (
+          <EmployeeList
+            employees={employees}
+            onAddEmployee={() => setIsAddEmployeeModalOpen(true)}
+          />
+        );
       case 'attendance':
         return <AttendanceTracker />;
       case 'performance':
@@ -25,23 +33,29 @@ function App() {
       case 'settings':
         return <SettingsPanel />;
       default:
-        return <EmployeeList onAddEmployee={() => setIsAddEmployeeModalOpen(true)} />;
+        return (
+          <EmployeeList
+            employees={employees}
+            onAddEmployee={() => setIsAddEmployeeModalOpen(true)}
+          />
+        );
     }
   };
 
   return (
     <div className="flex min-h-screen bg-gray-100">
       <Sidebar activeTab={activeTab} onTabChange={setActiveTab} />
-      <main className="flex-1 p-8">
-        {renderContent()}
-      </main>
+      <main className="flex-1 p-8">{renderContent()}</main>
 
       <Modal
         isOpen={isAddEmployeeModalOpen}
         onClose={() => setIsAddEmployeeModalOpen(false)}
         title="Add New Employee"
       >
-        <AddEmployeeForm onClose={() => setIsAddEmployeeModalOpen(false)} />
+        <AddEmployeeForm
+          onClose={() => setIsAddEmployeeModalOpen(false)}
+          onAdd={(employee) => setEmployees((current) => [employee, ...current])}
+        />
       </Modal>
     </div>
   );
