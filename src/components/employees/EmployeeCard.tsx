@@ -91,9 +91,11 @@ const EmployeeCard: React.FC<EmployeeCardProps> = ({ employee }) => {
 
           <div className="border-t pt-4">
             <h4 className="font-semibold mb-2">Recent Activity</h4>
-            <div className="space-y-2">
-              <p className="text-sm text-gray-600">Last attendance: Today, 9:00 AM</p>
-              <p className="text-sm text-gray-600">Latest performance review: 4.5/5</p>
+            <div className="rounded-md bg-gray-50 p-3">
+              <p className="text-sm font-medium text-gray-700">No verified activity data</p>
+              <p className="mt-1 text-sm text-gray-500">
+                The attendance and performance backend is not connected in this local demo.
+              </p>
             </div>
           </div>
         </div>
