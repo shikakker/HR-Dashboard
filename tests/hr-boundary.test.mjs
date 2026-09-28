@@ -38,3 +38,12 @@ test('employee view controls expose accessible state', () => {
   assert.match(list, /aria-pressed=\{viewMode === 'grid'\}/);
   assert.match(list, /aria-pressed=\{viewMode === 'table'\}/);
 });
+
+
+test('employee details never fabricate attendance or performance facts in local demo mode', async () => {
+  const card = await readFile(new URL('../src/components/employees/EmployeeCard.tsx', import.meta.url), 'utf8');
+  assert.doesNotMatch(card, /Today, 9:00 AM/);
+  assert.doesNotMatch(card, /4\.5\/5/);
+  assert.match(card, /No verified activity data/);
+  assert.match(card, /attendance and performance backend is not connected/i);
+});
