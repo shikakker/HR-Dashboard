@@ -1,3 +1,14 @@
+## 2026-09-28 — fabricated employee activity removed
+
+- Exact code head before this documentation commit: `ebf8b48772cf4d4cee2af10368db4716ce15aa92`.
+- Employee details no longer claim a fabricated universal attendance time or `4.5/5` performance review. The UI explicitly says no verified activity data exists because the attendance/performance backend is not connected in this local demo.
+- Regression contract added.
+- GitHub Quality run `36417077400`: **SUCCESS**.
+- No canonical Vercel project is present in the connected team inventory.
+- Status: **PARTIAL** as a privacy-safe local demo; no production HR backend/auth/RLS is claimed.
+
+---
+
 # Product Completion Status — HR Dashboard
 
 Canonical repository: `shikakker/HR-Dashboard`  
