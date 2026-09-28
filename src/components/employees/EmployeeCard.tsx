@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, Building, Calendar } from 'lucide-react';
+import { Mail, Building, Calendar } from 'lucide-react';
 import { Employee } from '../../types';
 import Modal from '../common/Modal';
 
@@ -12,16 +12,23 @@ const EmployeeCard: React.FC<EmployeeCardProps> = ({ employee }) => {
 
   return (
     <>
-      <div 
+      <button
+        type="button"
         onClick={() => setIsModalOpen(true)}
-        className="bg-white rounded-lg shadow-md p-4 cursor-pointer hover:shadow-lg transition-shadow"
+        className="w-full text-left bg-white rounded-lg shadow-md p-4 cursor-pointer hover:shadow-lg transition-shadow focus:outline-none focus:ring-2 focus:ring-blue-500"
       >
         <div className="flex items-center space-x-4">
-          <img
-            src={employee.avatar}
-            alt={employee.name}
-            className="w-16 h-16 rounded-full"
-          />
+          {employee.avatar ? (
+            <img
+              src={employee.avatar}
+              alt=""
+              className="w-16 h-16 rounded-full"
+            />
+          ) : (
+            <div aria-hidden="true" className="w-16 h-16 rounded-full bg-blue-100 text-blue-800 flex items-center justify-center text-xl font-semibold">
+              {employee.name.slice(0, 1).toUpperCase()}
+            </div>
+          )}
           <div>
             <h3 className="text-lg font-semibold">{employee.name}</h3>
             <p className="text-gray-600">{employee.position}</p>
@@ -34,7 +41,7 @@ const EmployeeCard: React.FC<EmployeeCardProps> = ({ employee }) => {
             </span>
           </div>
         </div>
-      </div>
+      </button>
 
       <Modal
         isOpen={isModalOpen}
@@ -43,11 +50,17 @@ const EmployeeCard: React.FC<EmployeeCardProps> = ({ employee }) => {
       >
         <div className="space-y-6">
           <div className="flex items-center space-x-6">
-            <img
-              src={employee.avatar}
-              alt={employee.name}
-              className="w-24 h-24 rounded-full"
-            />
+            {employee.avatar ? (
+              <img
+                src={employee.avatar}
+                alt=""
+                className="w-24 h-24 rounded-full"
+              />
+            ) : (
+              <div aria-hidden="true" className="w-24 h-24 rounded-full bg-blue-100 text-blue-800 flex items-center justify-center text-3xl font-semibold">
+                {employee.name.slice(0, 1).toUpperCase()}
+              </div>
+            )}
             <div>
               <h2 className="text-2xl font-bold">{employee.name}</h2>
               <p className="text-gray-600">{employee.position}</p>
@@ -78,9 +91,11 @@ const EmployeeCard: React.FC<EmployeeCardProps> = ({ employee }) => {
 
           <div className="border-t pt-4">
             <h4 className="font-semibold mb-2">Recent Activity</h4>
-            <div className="space-y-2">
-              <p className="text-sm text-gray-600">Last attendance: Today, 9:00 AM</p>
-              <p className="text-sm text-gray-600">Latest performance review: 4.5/5</p>
+            <div className="rounded-md bg-gray-50 p-3">
+              <p className="text-sm font-medium text-gray-700">No verified activity data</p>
+              <p className="mt-1 text-sm text-gray-500">
+                The attendance and performance backend is not connected in this local demo.
+              </p>
             </div>
           </div>
         </div>

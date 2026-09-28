@@ -1,8 +1,8 @@
 import React from 'react';
-import { employees } from '../../data/mockData';
+import { Employee } from '../../types';
 import EmployeeCard from './EmployeeCard';
 
-const EmployeeGrid: React.FC = () => {
+const EmployeeGrid: React.FC<{ employees: Employee[] }> = ({ employees }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {employees.map((employee) => (
