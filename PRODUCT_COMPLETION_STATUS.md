@@ -65,3 +65,13 @@ No employee database mutation, credential change, merge or production promotion 
 - No canonical Vercel project is present in the connected team.
 
 Status remains **PARTIAL** for authenticated durable HR ownership/hosted E2E. Keep Draft; no HR backend mutation or production promotion.
+
+
+## 2026-09-28 continuation
+
+- Added a placeholder-only `.env.example` and ignore rules for local environment files so future local configuration is not accidentally committed.
+- Exact head `96e24abe80e4efb1d247b38e82359de205c88a6e` passed GitHub Quality run `36391279713`: install, contract tests, typecheck, lint and production build all executed successfully.
+- The application remains local-demo only for employee creation; no authenticated HR persistence is claimed.
+- No canonical HR-Dashboard project is present in the connected Vercel team inventory.
+
+Keep Draft. No merge, production database mutation or production promotion.
